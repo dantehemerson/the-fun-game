@@ -1,4 +1,6 @@
 import * as React from 'react'
+import CanvasContainer from '../components/CanvasContainer'
+import { WIDTH, HEIGHT } from '../contants'
 
 interface IndexPageProps {
   data: {
@@ -13,7 +15,9 @@ interface IndexPageProps {
 const Index = (props: IndexPageProps) => {
     return (
       <div>
-        Hola
+        <CanvasContainer>
+          <canvas  width={WIDTH} height={HEIGHT} />
+        </CanvasContainer>
       </div>
     )
 }

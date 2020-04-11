@@ -7,10 +7,13 @@
     "@types/node": "^8.0.7",
     "@types/react": "15.0.21",
     "@types/react-dom": "0.14.23",
+    "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "^1.9.119",
     "gatsby-link": "^1.6.28",
     "gatsby-plugin-react-helmet": "^1.0.8",
-    "gatsby-plugin-typescript": "^1.4.10"
+    "gatsby-plugin-styled-components": "^3.2.1",
+    "gatsby-plugin-typescript": "^1.4.10",
+    "styled-components": "^5.1.0"
   },
   "keywords": [
     "gatsby, typescript"

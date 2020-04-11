@@ -1,6 +1,11 @@
 import * as React from 'react'
 import CanvasContainer from '../components/CanvasContainer'
 import { WIDTH, HEIGHT } from '../contants'
+import { Stage, Layer, Star, Text, Rect } from 'react-konva';
+import { levels } from '../data/follow-the-line/levels';
+import { RectPos } from '../data/types';
+import FollowCursor from '../components/FollowCursor';
+
 
 interface IndexPageProps {
   data: {
@@ -13,14 +18,40 @@ interface IndexPageProps {
 }
 
 const Index = (props: IndexPageProps) => {
-  const canvas = React.useRef()
+  const [mousePos, setMousePos] = React.useState({ x: 10, y: 10 })
+
+  React.useEffect(() => {
+    
+  }, [])
+
+
+  const handleMoveMouse = (event: { evt: MouseEvent }) => {
+    console.log("Dante: handleMoveMouse -> event", event.evt)
+    setMousePos({ x:  event.evt.offsetX, y: event.evt.offsetY })
+  }
+
+  const level = levels[0]
 
   return (
-    <div>
-      <CanvasContainer>
-        <canvas  width={WIDTH} height={HEIGHT} />
-      </CanvasContainer>
-    </div>
+    <CanvasContainer>
+      <Stage width={WIDTH} height={HEIGHT} onMouseMove={handleMoveMouse}>
+        <Layer>
+          <FollowCursor pos={mousePos} />
+          {
+            level.map((rect: RectPos, key) => (
+              <Rect
+                x={rect.x1}
+                key={key}
+                y={rect.y1}
+                width={rect.x2 - rect.x1}
+                height={rect.y2 - rect.y1}
+                fill="blue"
+              />
+            ))
+          }
+        </Layer>
+      </Stage>
+    </CanvasContainer>
   )
 }
 

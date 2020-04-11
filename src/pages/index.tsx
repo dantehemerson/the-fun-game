@@ -1,8 +1,5 @@
 import * as React from 'react'
-import Link from 'gatsby-link'
 
-// Please note that you can use https://github.com/dotansimha/graphql-code-generator
-// to generate all types from graphQL schema
 interface IndexPageProps {
   data: {
     site: {
@@ -13,23 +10,12 @@ interface IndexPageProps {
   }
 }
 
-export default class extends React.Component<IndexPageProps, {}> {
-  constructor(props: IndexPageProps, context: any) {
-    super(props, context)
-  }
-  public render() {
+const Index = (props: IndexPageProps) => {
     return (
       <div>
-        <h1>Hi people</h1>
-        <p>
-          Welcome to your new{' '}
-          <strong>{this.props.data.site.siteMetadata.title}</strong> site.
-        </p>
-        <p>Now go build something great.</p>
-        <Link to="/page-2/">Go to page 2</Link>
+        Hola
       </div>
     )
-  }
 }
 
 export const pageQuery = graphql`
@@ -41,3 +27,4 @@ export const pageQuery = graphql`
     }
   }
 `
+export default Index

@@ -13,13 +13,15 @@ interface IndexPageProps {
 }
 
 const Index = (props: IndexPageProps) => {
-    return (
-      <div>
-        <CanvasContainer>
-          <canvas  width={WIDTH} height={HEIGHT} />
-        </CanvasContainer>
-      </div>
-    )
+  const canvas = React.useRef()
+
+  return (
+    <div>
+      <CanvasContainer>
+        <canvas  width={WIDTH} height={HEIGHT} />
+      </CanvasContainer>
+    </div>
+  )
 }
 
 export const pageQuery = graphql`

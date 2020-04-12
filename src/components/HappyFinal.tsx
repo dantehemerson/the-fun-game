@@ -9,11 +9,11 @@ const Audio = window.Audio
 
 const Container = styled.div`
   position: fixed;
-  background: red;
   background-image: url(${R.image});
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+  cursor: default;
   background-size: cover;
   top: 0;
   right: 0;
@@ -51,23 +51,28 @@ const HappyFinal = (props: HappyFinalProps, ref: any) => {
   const [playing, audio] = useAudio(sound);
   const [show, setShow] = React.useState(false)
 
+  const handlePlay = () => {
+    if(!playing) {
+      audio.play()
+      setShow(true)
+    } 
+  }
+
+  const handleStop = () => {
+    audio.pause()
+    audio.currentTime = 0
+    setShow(false)
+  }
+
   React.useImperativeHandle(ref, () => ({
-    play: () => {
-      if(!playing) {
-        audio.play()
-        setShow(true)
-      } 
-    },
-    stop: () => {
-      audio.stop()
-      setShow(false)
-    }
+    play: handlePlay,
+    stop: handleStop
   }))
 
   if(!show) return null
 
   return (
-    <Container>
+    <Container onClick={handleStop}>
     </Container>
   )
 }

@@ -12,11 +12,12 @@ const Container: any = styled.div`
   & > div {
     cursor: ${props => !(props as any).started ? 'default' : 'none'};
     width: 810px;
+    background: '#e7e7e7';
     height: 610px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid blue !important; 
+    border: 2px solid #f1f1f1 !important; 
   }
 `
 

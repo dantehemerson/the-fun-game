@@ -12,7 +12,7 @@ type FollowCursorProps = {
 const FollowCursor = ({
   pos,
   width = WIDTH_MOUSE_POINTER,
-  color = 'blue'
+  color = '#1E3888'
 }: FollowCursorProps) => {
   return (
     <Rect 

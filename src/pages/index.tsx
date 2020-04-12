@@ -9,6 +9,7 @@ import { Pos } from '../types';
 import { isInsideRect, isInsideRects } from '../utils/follo-the-line.utils';
 import Menu from '../components/Menu';
 import HappyFinal from '../components/HappyFinal';
+import { DefaultLayout } from '../layouts/Default';
 
 interface IndexPageProps {
   data: {
@@ -38,7 +39,7 @@ const Index = (props: IndexPageProps) => {
     }
 
     if(!isInsideRects(rects, mousePos)) {
-      happyRef.current.play()
+      // happyRef.current.play()
       console.log('Make me fun')
     }
   }, [mousePos])
@@ -51,8 +52,9 @@ const Index = (props: IndexPageProps) => {
 
 
   return (
-    <CanvasContainer started={started}>
-      <React.Fragment>
+    <DefaultLayout>
+      <CanvasContainer started={started}>
+        <React.Fragment>
         {
           started ? 
           <Stage width={WIDTH} height={HEIGHT} onMouseMove={handleMoveMouse}>
@@ -65,7 +67,7 @@ const Index = (props: IndexPageProps) => {
                       y={rect.y1}
                       width={rect.x2 - rect.x1}
                       height={rect.y2 - rect.y1}
-                      fill={rect.color ? rect.color : 'skyblue'}
+                      fill={rect.color ? rect.color : '#47A8BD'}
                     />
                   ))
                 }
@@ -76,7 +78,8 @@ const Index = (props: IndexPageProps) => {
         }
         <HappyFinal ref={happyRef}/>
       </React.Fragment>
-    </CanvasContainer>
+      </CanvasContainer>
+    </DefaultLayout>
   )
 }
 

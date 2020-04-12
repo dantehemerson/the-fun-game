@@ -66,6 +66,6 @@ export const LEVEL3: RectPos[] = [
     x2: 410,
     y1: 40,
     y2: 90,
-    color: 'red'
+    color: '#9C3848'
   }
 ]

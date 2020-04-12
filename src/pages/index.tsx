@@ -5,6 +5,8 @@ import { Stage, Layer, Star, Text, Rect } from 'react-konva';
 import { levels } from '../data/follow-the-line/levels';
 import { RectPos } from '../data/types';
 import FollowCursor from '../components/FollowCursor';
+import { Pos } from '../types';
+import { isInsideRect, isInsideRects } from '../utils/follo-the-line.utils';
 
 
 interface IndexPageProps {
@@ -18,19 +20,31 @@ interface IndexPageProps {
 }
 
 const Index = (props: IndexPageProps) => {
-  const [mousePos, setMousePos] = React.useState({ x: 10, y: 10 })
+  const [mousePos, setMousePos] = React.useState<Pos>({ x: 10, y: 10 })
+  const level = levels[2]
+
+
+  const rects = level.slice(0, level.length - 1)
+
 
   React.useEffect(() => {
-    
-  }, [])
+    const end = level[level.length  - 1]
+    if(isInsideRect(end, mousePos)) {
+      console.log('You Win!!!')
+      return
+    }
 
+    if(!isInsideRects(rects, mousePos)) {
+      console.log('Make me fun')
+    }
+  }, [mousePos])
 
   const handleMoveMouse = (event: { evt: MouseEvent }) => {
-    console.log("Dante: handleMoveMouse -> event", event.evt)
-    setMousePos({ x:  event.evt.offsetX, y: event.evt.offsetY })
+    const x = event.evt.offsetX
+    const y = event.evt.offsetY
+    setMousePos({ x , y })
   }
 
-  const level = levels[2]
 
   return (
     <CanvasContainer>

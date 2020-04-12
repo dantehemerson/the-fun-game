@@ -1,7 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 import { R } from '../resources'
+import { window } from 'browser-monads'
 import sound from '../data/sound.mp3'
+
+const Audio = window.Audio
 
 
 const Container = styled.div`
@@ -20,21 +23,19 @@ const Container = styled.div`
 `
 
 const useAudio = (url: string) => {
-  const [audio] = React.useState(Audio ? new Audio(url) : null);
+  const [audio] = React.useState(new Audio(url));
   const [playing, setPlaying] = React.useState(false);
 
-  const toggle = () => setPlaying(!playing);
-
   React.useEffect(() => {
-      playing ? audio && audio.play() : audio && audio.pause();
+      playing ? audio.play() : audio.pause();
     },
     [playing]
   );
 
   React.useEffect(() => {
-    audio && audio.addEventListener('ended', () => setPlaying(false));
+    audio.addEventListener('ended', () => setPlaying(false));
     return () => {
-      audio && audio.removeEventListener('ended', () => setPlaying(false));
+      audio.removeEventListener('ended', () => setPlaying(false));
     };
   }, []);
 
@@ -53,7 +54,7 @@ const HappyFinal = ({ show}: HappyFinalProps) => {
   
 
   React.useEffect(() => {
-    audio && audio.play()
+    audio.play()
   }, [])
   return (
     <Container>

@@ -21,6 +21,7 @@ interface IndexPageProps {
 }
 
 const Index = (props: IndexPageProps) => {
+  let happyRef = React.useRef()
   const [mousePos, setMousePos] = React.useState<Pos>({ x: 700, y: 550 })
   const level = levels[2]
   const [started, setStart] = React.useState(false)
@@ -37,6 +38,7 @@ const Index = (props: IndexPageProps) => {
     }
 
     if(!isInsideRects(rects, mousePos)) {
+      happyRef.current.play()
       console.log('Make me fun')
     }
   }, [mousePos])
@@ -51,28 +53,28 @@ const Index = (props: IndexPageProps) => {
   return (
     <CanvasContainer started={started}>
       <React.Fragment>
-      {
-        started ? 
-        <Stage width={WIDTH} height={HEIGHT} onMouseMove={handleMoveMouse}>
-            <Layer>
-              {
-                level.map((rect: RectPos, key) => (
-                  <Rect
-                    x={rect.x1}
-                    key={key}
-                    y={rect.y1}
-                    width={rect.x2 - rect.x1}
-                    height={rect.y2 - rect.y1}
-                    fill={rect.color ? rect.color : 'skyblue'}
-                  />
-                ))
-              }
-              <FollowCursor pos={mousePos} />
-            </Layer>
-          </Stage>
-        : <Menu onClick={() => setStart(true)} />
-      }
-      <HappyFinal show={true}/>
+        {
+          started ? 
+          <Stage width={WIDTH} height={HEIGHT} onMouseMove={handleMoveMouse}>
+              <Layer>
+                {
+                  level.map((rect: RectPos, key) => (
+                    <Rect
+                      x={rect.x1}
+                      key={key}
+                      y={rect.y1}
+                      width={rect.x2 - rect.x1}
+                      height={rect.y2 - rect.y1}
+                      fill={rect.color ? rect.color : 'skyblue'}
+                    />
+                  ))
+                }
+                <FollowCursor pos={mousePos} />
+              </Layer>
+            </Stage>
+          : <Menu onClick={() => setStart(true)} />
+        }
+        <HappyFinal ref={happyRef}/>
       </React.Fragment>
     </CanvasContainer>
   )

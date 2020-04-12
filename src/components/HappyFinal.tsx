@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { R } from '../resources'
 import { window } from 'browser-monads'
-import sound from '../data/sound.mp3'
+import sound from '../data/fun_sound_mock.mp3'
 
 const Audio = window.Audio
 
@@ -44,23 +44,32 @@ const useAudio = (url: string) => {
 
 
 type HappyFinalProps = {
-  show: boolean
+  
 }
 
-const HappyFinal = ({ show}: HappyFinalProps) => {
+const HappyFinal = (props: HappyFinalProps, ref: any) => {
   const [playing, audio] = useAudio(sound);
+  const [show, setShow] = React.useState(false)
+
+  React.useImperativeHandle(ref, () => ({
+    play: () => {
+      if(!playing) {
+        audio.play()
+        setShow(true)
+      } 
+    },
+    stop: () => {
+      audio.stop()
+      setShow(false)
+    }
+  }))
+
   if(!show) return null
 
-  
-
-  React.useEffect(() => {
-    audio.play()
-  }, [])
   return (
     <Container>
-
     </Container>
   )
 }
 
-export default HappyFinal
+export default React.forwardRef(HappyFinal)

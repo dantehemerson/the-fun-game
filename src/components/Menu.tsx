@@ -9,7 +9,7 @@ const Container = styled.div`
 
 const ButtonStart = styled.div`
   position: absolute;
-  right: 40px;
+  right: 50px;
   padding: 10px 20px;
   background: red;
   border-radius: 4px;

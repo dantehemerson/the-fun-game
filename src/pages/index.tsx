@@ -8,6 +8,7 @@ import FollowCursor from '../components/FollowCursor';
 import { Pos } from '../types';
 import { isInsideRect, isInsideRects } from '../utils/follo-the-line.utils';
 import Menu from '../components/Menu';
+import HappyFinal from '../components/HappyFinal';
 
 interface IndexPageProps {
   data: {
@@ -20,7 +21,7 @@ interface IndexPageProps {
 }
 
 const Index = (props: IndexPageProps) => {
-  const [mousePos, setMousePos] = React.useState<Pos>({ x: 10, y: 10 })
+  const [mousePos, setMousePos] = React.useState<Pos>({ x: 700, y: 550 })
   const level = levels[2]
   const [started, setStart] = React.useState(false)
 
@@ -49,6 +50,7 @@ const Index = (props: IndexPageProps) => {
 
   return (
     <CanvasContainer started={started}>
+      <React.Fragment>
       {
         started ? 
         <Stage width={WIDTH} height={HEIGHT} onMouseMove={handleMoveMouse}>
@@ -70,6 +72,8 @@ const Index = (props: IndexPageProps) => {
           </Stage>
         : <Menu onClick={() => setStart(true)} />
       }
+      <HappyFinal show={true}/>
+      </React.Fragment>
     </CanvasContainer>
   )
 }

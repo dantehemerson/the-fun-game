@@ -23,13 +23,18 @@ interface IndexPageProps {
 
 const Index = (props: IndexPageProps) => {
   let happyRef = React.useRef()
-  const [mousePos, setMousePos] = React.useState<Pos>({ x: 700, y: 550 })
+  const [mousePos, setMousePos] = React.useState<Pos>({ x: 700, y: 540 })
   const level = levels[2]
   const [started, setStart] = React.useState(false)
 
-
   const rects = level.slice(0, level.length - 1)
+  const funRect = level.find(item => item.fun)
 
+
+  const restart = () => {
+    setStart(false)
+    setMousePos({ x: 700, y: 550 })
+  }
 
   React.useEffect(() => {
     const end = level[level.length  - 1]
@@ -38,11 +43,13 @@ const Index = (props: IndexPageProps) => {
       return
     }
 
-    if(!isInsideRects(rects, mousePos)) {
+    if(funRect && isInsideRect(funRect, mousePos)) {
       happyRef.current.play()
-      setStart(false)
-      setMousePos({ x: 700, y: 550 })
-      console.log('Make me fun')
+      restart()
+    }
+
+    if(!isInsideRects(rects, mousePos)) {
+      restart()
     }
   }, [mousePos])
 

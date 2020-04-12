@@ -11,8 +11,8 @@ const Container = styled.div`
 
 const ButtonStart = styled.div`
   position: absolute;
-  right: 50px;
-  padding: 10px 24px;
+  right: 58px;
+  padding: 2px 24px;
   background: #4a7184;
   border-radius: 4px;
   border: 1px solid #395c6d;
@@ -26,7 +26,7 @@ const ButtonStart = styled.div`
   &:hover {
     background: #395c6d;
   }
-  bottom: 40px;
+  bottom: 46px;
 `
 
 const Title = styled.p`

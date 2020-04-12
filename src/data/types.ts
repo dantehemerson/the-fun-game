@@ -4,4 +4,5 @@ export type RectPos = {
   x2: number
   y2: number
   color?: string
+  fun?: boolean
 }

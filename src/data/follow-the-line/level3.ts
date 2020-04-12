@@ -61,6 +61,14 @@ export const LEVEL3: RectPos[] = [
     y1: 60,
     y2: 72
   },
+  {
+    x1: 320,
+    x2: 600,
+    y1: 120,
+    y2: 190,
+    fun: true,
+    color: 'transparent'
+  },
   { // FIN
     x1: 340,
     x2: 410,

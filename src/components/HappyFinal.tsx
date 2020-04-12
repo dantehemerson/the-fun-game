@@ -20,21 +20,21 @@ const Container = styled.div`
 `
 
 const useAudio = (url: string) => {
-  const [audio] = React.useState(new Audio(url));
+  const [audio] = React.useState(Audio ? new Audio(url) : null);
   const [playing, setPlaying] = React.useState(false);
 
   const toggle = () => setPlaying(!playing);
 
   React.useEffect(() => {
-      playing ? audio.play() : audio.pause();
+      playing ? audio && audio.play() : audio && audio.pause();
     },
     [playing]
   );
 
   React.useEffect(() => {
-    audio.addEventListener('ended', () => setPlaying(false));
+    audio && audio.addEventListener('ended', () => setPlaying(false));
     return () => {
-      audio.removeEventListener('ended', () => setPlaying(false));
+      audio && audio.removeEventListener('ended', () => setPlaying(false));
     };
   }, []);
 
@@ -53,7 +53,7 @@ const HappyFinal = ({ show}: HappyFinalProps) => {
   
 
   React.useEffect(() => {
-    audio.play()
+    audio && audio.play()
   }, [])
   return (
     <Container>

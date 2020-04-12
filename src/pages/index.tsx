@@ -30,13 +30,12 @@ const Index = (props: IndexPageProps) => {
     setMousePos({ x:  event.evt.offsetX, y: event.evt.offsetY })
   }
 
-  const level = levels[0]
+  const level = levels[2]
 
   return (
     <CanvasContainer>
       <Stage width={WIDTH} height={HEIGHT} onMouseMove={handleMoveMouse}>
         <Layer>
-          <FollowCursor pos={mousePos} />
           {
             level.map((rect: RectPos, key) => (
               <Rect
@@ -45,10 +44,11 @@ const Index = (props: IndexPageProps) => {
                 y={rect.y1}
                 width={rect.x2 - rect.x1}
                 height={rect.y2 - rect.y1}
-                fill="blue"
+                fill={rect.color ? rect.color : 'skyblue'}
               />
             ))
           }
+          <FollowCursor pos={mousePos} />
         </Layer>
       </Stage>
     </CanvasContainer>

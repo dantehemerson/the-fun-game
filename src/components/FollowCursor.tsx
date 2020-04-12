@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Pos } from '../types'
 import { Rect } from 'react-konva'
+import { WIDTH_MOUSE_POINTER } from '../contants'
 
 type FollowCursorProps = {
   pos: Pos
@@ -10,8 +11,8 @@ type FollowCursorProps = {
 
 const FollowCursor = ({
   pos,
-  width = 12,
-  color = 'red'
+  width = WIDTH_MOUSE_POINTER,
+  color = 'blue'
 }: FollowCursorProps) => {
   return (
     <Rect 

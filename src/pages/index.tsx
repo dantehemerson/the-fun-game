@@ -40,6 +40,8 @@ const Index = (props: IndexPageProps) => {
 
     if(!isInsideRects(rects, mousePos)) {
       happyRef.current.play()
+      setStart(false)
+      setMousePos({ x: 700, y: 550 })
       console.log('Make me fun')
     }
   }, [mousePos])

@@ -9,6 +9,7 @@ const Audio = window.Audio
 
 const Container = styled.div`
   position: fixed;
+  background: white;
   background-image: url(${R.image});
   background-repeat: no-repeat;
   background-attachment: fixed;

@@ -12,7 +12,7 @@ const Container: any = styled.div`
   & > div {
     cursor: ${props => !(props as any).started ? 'default' : 'none'};
     width: 810px;
-    background: '#e7e7e7';
+    background: #fcfcfc;
     height: 610px;
     display: flex;
     justify-content: center;

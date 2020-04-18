@@ -52,12 +52,12 @@ type MenuProps = {
 const Menu = (props: MenuProps) => {
   const detectMobile = useMobileDetect()
 
-  const isDesktop = detectMobile.isDesktop()
+  const isMobile = detectMobile.isMobile()
   return (
     <Container>
       <Title>The Fun Game</Title>
-      <Instructions warnMobile={!isDesktop || false} />
-      <ButtonStart disabled={!isDesktop} onClick={props.onClick}>
+      <Instructions warnMobile={isMobile || false} />
+      <ButtonStart disabled={isMobile} onClick={props.onClick}>
         START
       </ButtonStart>
     </Container>

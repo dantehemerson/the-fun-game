@@ -31,7 +31,6 @@ type InstructionsProps = {
 }
 
 const Instructions = ({ warnMobile }: InstructionsProps) => {
-  console.log('Dante: Instructions -> warnMobile', warnMobile)
   return (
     <Container>
       <p>* Follow the line without leaving it</p>

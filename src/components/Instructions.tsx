@@ -21,8 +21,8 @@ const Container = styled.div`
 const Instructions = () => {
   return (
     <Container>
-      <p>* Follow the line without leaving it</p> 
-      <span>🎵 Activate sounds for a better experience 🎵</span> 
+      <p>* Follow the line without leaving it</p>
+      <span>🎵 Activate sounds for a better experience 🎵</span>
     </Container>
   )
 }

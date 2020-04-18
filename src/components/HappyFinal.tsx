@@ -6,7 +6,7 @@ import { initializeResources } from '../resources'
 const Container = styled.div`
   position: fixed;
   background: white;
-  background-image: url(${(props: { image: string}) => props && props.image});
+  background-image: url(${(props: { image: string }) => props && props.image});
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -16,11 +16,10 @@ const Container = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  
 `
 
 type HappyFinalProps = {
-  happy: boolean 
+  happy: boolean
 }
 
 const HappyFinal = ({ happy }: HappyFinalProps, ref: any) => {
@@ -28,12 +27,11 @@ const HappyFinal = ({ happy }: HappyFinalProps, ref: any) => {
   const [playing, audio] = useAudio(R.sound)
   const [show, setShow] = React.useState(false)
 
-
   const handlePlay = () => {
-    if(!playing) {
+    if (!playing) {
       audio.play()
       setShow(true)
-    } 
+    }
   }
 
   const handleStop = () => {
@@ -44,15 +42,12 @@ const HappyFinal = ({ happy }: HappyFinalProps, ref: any) => {
 
   React.useImperativeHandle(ref, () => ({
     play: handlePlay,
-    stop: handleStop
+    stop: handleStop,
   }))
 
-  if(!show) return null
+  if (!show) return null
 
-  return (
-    <Container onClick={handleStop} image={R.image}>
-    </Container>
-  )
+  return <Container onClick={handleStop} image={R.image}></Container>
 }
 
 export default React.forwardRef(HappyFinal)

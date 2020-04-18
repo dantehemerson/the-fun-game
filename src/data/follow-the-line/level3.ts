@@ -65,10 +65,10 @@ export const LEVEL3: RectPos[] = [
     x1: 320,
     x2: 600,
     y1: 120,
-    y2: 390,
+    y2: 190,
     fun: true,
-    color: 'red',
-    // color: 'transparent'
+    // color: 'red',
+    color: 'transparent',
   },
   {
     // FIN

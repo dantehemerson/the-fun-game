@@ -10,6 +10,7 @@ import { isInsideRect, isInsideRects } from '../utils/follo-the-line.utils';
 import Menu from '../components/Menu';
 import HappyFinal from '../components/HappyFinal';
 import { DefaultLayout } from '../layouts/Default';
+import { withLocation } from '../hocs/withLocation';
 
 interface IndexPageProps {
   data: {
@@ -19,6 +20,9 @@ interface IndexPageProps {
       }
     }
   }
+  search: {
+    v?: string
+  }
 }
 
 const Index = (props: IndexPageProps) => {
@@ -26,11 +30,11 @@ const Index = (props: IndexPageProps) => {
   const [mousePos, setMousePos] = React.useState<Pos>({ x: 700, y: 540 })
   const level = levels[2]
   const [started, setStart] = React.useState(false)
-
+  
   const rects = level.slice(0, level.length - 1)
   const funRect = level.find(item => item.fun)
-
-
+  
+  
   const restart = () => {
     setStart(false)
     setMousePos({ x: 700, y: 550 })
@@ -85,7 +89,7 @@ const Index = (props: IndexPageProps) => {
             </Stage>
           : <Menu onClick={() => setStart(true)} />
         }
-        <HappyFinal ref={happyRef}/>
+        <HappyFinal ref={happyRef} happy={props.search.v === 'lie'}/>
       </React.Fragment>
       </CanvasContainer>
     </DefaultLayout>
@@ -101,4 +105,4 @@ export const pageQuery = graphql`
     }
   }
 `
-export default Index
+export default withLocation(Index)

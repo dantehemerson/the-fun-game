@@ -1,16 +1,12 @@
 import * as React from 'react'
 import styled from 'styled-components'
-import { R } from '../resources'
-import { window } from 'browser-monads'
-import sound from '../data/fun_sound_mock.mp3'
-
-const Audio = window.Audio
-
+import { useAudio } from '../hooks/useAudio'
+import { initializeResources } from '../resources'
 
 const Container = styled.div`
   position: fixed;
   background: white;
-  background-image: url(${R.image});
+  background-image: url(${(props: { image: string}) => props && props.image});
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -23,34 +19,15 @@ const Container = styled.div`
   
 `
 
-const useAudio = (url: string) => {
-  const [audio] = React.useState(new Audio(url));
-  const [playing, setPlaying] = React.useState(false);
-
-  React.useEffect(() => {
-      playing ? audio.play() : audio.pause();
-    },
-    [playing]
-  );
-
-  React.useEffect(() => {
-    audio.addEventListener('ended', () => setPlaying(false));
-    return () => {
-      audio.removeEventListener('ended', () => setPlaying(false));
-    };
-  }, []);
-
-  return [playing, audio];
-};
-
-
 type HappyFinalProps = {
-  
+  happy: boolean 
 }
 
-const HappyFinal = (props: HappyFinalProps, ref: any) => {
-  const [playing, audio] = useAudio(sound);
+const HappyFinal = ({ happy }: HappyFinalProps, ref: any) => {
+  const [R] = React.useState(initializeResources(happy))
+  const [playing, audio] = useAudio(R.sound)
   const [show, setShow] = React.useState(false)
+
 
   const handlePlay = () => {
     if(!playing) {
@@ -73,7 +50,7 @@ const HappyFinal = (props: HappyFinalProps, ref: any) => {
   if(!show) return null
 
   return (
-    <Container onClick={handleStop}>
+    <Container onClick={handleStop} image={R.image}>
     </Container>
   )
 }

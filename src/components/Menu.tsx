@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as useMobileDetect from 'use-mobile-detect-hook'
 import styled from 'styled-components'
 import Instructions from './Instructions'
 
@@ -9,7 +10,7 @@ const Container = styled.div`
   position: relative;
 `
 
-const ButtonStart = styled.div`
+const ButtonStart = styled.button`
   position: absolute;
   right: 58px;
   padding: 2px 24px;
@@ -25,6 +26,9 @@ const ButtonStart = styled.div`
   color: white;
   &:hover {
     background: #395c6d;
+  }
+  &:disabled {
+    opacity: 0.3;
   }
   bottom: 46px;
 `
@@ -46,11 +50,16 @@ type MenuProps = {
 }
 
 const Menu = (props: MenuProps) => {
+  const detectMobile = useMobileDetect()
+
+  const isDesktop = detectMobile.isDesktop()
   return (
     <Container>
       <Title>The Fun Game</Title>
-      <Instructions />
-      <ButtonStart onClick={props.onClick}>START</ButtonStart>
+      <Instructions warnMobile={!isDesktop} />
+      <ButtonStart disabled={!isDesktop} onClick={props.onClick}>
+        START
+      </ButtonStart>
     </Container>
   )
 }

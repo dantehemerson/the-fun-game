@@ -27,6 +27,7 @@ interface IndexPageProps {
 
 const Index = (props: IndexPageProps) => {
   let happyRef = React.useRef()
+
   const [mousePos, setMousePos] = React.useState<Pos>({ x: 700, y: 540 })
   const level = levels[2]
   const [started, setStart] = React.useState(false)
@@ -85,7 +86,7 @@ const Index = (props: IndexPageProps) => {
           ) : (
             <Menu onClick={() => setStart(true)} />
           )}
-          <HappyFinal ref={happyRef} happy={props.search.v === 'lie'} />
+          <HappyFinal ref={happyRef} happy={Boolean(props.search.v)} />
         </React.Fragment>
       </CanvasContainer>
     </DefaultLayout>

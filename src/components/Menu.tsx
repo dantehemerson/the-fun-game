@@ -56,7 +56,7 @@ const Menu = (props: MenuProps) => {
   return (
     <Container>
       <Title>The Fun Game</Title>
-      <Instructions warnMobile={!isDesktop} />
+      <Instructions warnMobile={!isDesktop || false} />
       <ButtonStart disabled={!isDesktop} onClick={props.onClick}>
         START
       </ButtonStart>

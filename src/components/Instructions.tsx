@@ -31,11 +31,12 @@ type InstructionsProps = {
 }
 
 const Instructions = ({ warnMobile }: InstructionsProps) => {
+  console.log('Dante: Instructions -> warnMobile', warnMobile)
   return (
     <Container>
       <p>* Follow the line without leaving it</p>
       <span>🎵 Activate sounds for a better experience 🎵</span>
-      {warnMobile && <b>This game only support desktop devices</b>}
+      {warnMobile ? <b>This game only support desktop devices</b> : null}
     </Container>
   )
 }
